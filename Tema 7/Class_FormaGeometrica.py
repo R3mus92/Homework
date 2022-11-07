@@ -1,9 +1,10 @@
-from abc import abstractmethod
+from abc import ABC, abstractmethod
 
 
-class FormaGeometrica:
+class FormaGeometrica(ABC):
+
     def __init__(self):
-        self.PI=3.14
+        self.PI = 3.14
 
     @abstractmethod
     def aria(self):
@@ -14,6 +15,7 @@ class FormaGeometrica:
 
 class Patrat(FormaGeometrica):
     def __init__(self):
+        super().__init__()
         self.__latura = 10
 
     def get_latura(self):
@@ -21,19 +23,22 @@ class Patrat(FormaGeometrica):
 
     def set_latura(self):
         self.__latura = 5
+        return self.__latura
 
     def delete_latura(self):
         self.__latura = 0
+        return self.__latura
 
     def descrie(self):
         print("Cel mai probabil am colturi")
 
     def aria(self):
-        return patrat.get_latura() * patrat.get_latura()
+        return self.__latura * self.__latura
 
 
 class Cerc(FormaGeometrica):
     def __init__(self):
+        super().__init__()
         self.__raza = 10
 
     def get_raza(self):
@@ -41,20 +46,20 @@ class Cerc(FormaGeometrica):
 
     def set_raza(self):
         self.__raza = 5
+        return self.__raza
 
     def delete_raza(self):
         self.__raza = 0
+        return self.__raza
 
     def aria(self):
-        return cerc.get_raza() * cerc.get_raza() * forma1.PI
+        return self.PI * self.__raza * self.__raza
 
     def descrie(self):
         print("Cel mai probabil nu am colturi")
 
 
 if __name__=="__main__":
-
-    forma1 = FormaGeometrica()
 
     patrat = Patrat()
     patrat.descrie()
